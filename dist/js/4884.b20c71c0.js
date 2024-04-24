@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksamura_snikers=self.webpackChunksamura_snikers||[]).push([[4884],{4884:function(e,n,s){s.r(n);var u=s(67294);n.default=function(){return u.createElement("div",null,"hi")}}}]);
