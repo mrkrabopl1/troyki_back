@@ -34,7 +34,7 @@ func NewServer(cfg config.HTTPServer, store db.Interface) *Server {
 
 func (s *Server) Start(ctx context.Context) {
 	fmt.Println(s.cfg.Port, "port")
-	//fileServer := http.FileServer(http.Dir("./dist"))
+	fileServer := http.FileServer(http.Dir("./dist"))
 	server := &http.Server{
 		Addr:    fmt.Sprintf(":%d", s.cfg.Port),
 		Handler: s.router,
@@ -42,11 +42,11 @@ func (s *Server) Start(ctx context.Context) {
 		// ReadTimeout:  s.cfg.ReadTimeout,
 		// WriteTimeout: s.cfg.WriteTimeout,
 	}
-	// s.router.Get("/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-	// 	http.ServeFile(w, r, "./dist/index.html")
-	// }))
+	s.router.Get("/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "./dist/index.html")
+	}))
 
-	// s.router.Handle("/*", fileServer)
+	s.router.Handle("/*", fileServer)
 
 	shutdownComplete := handleShutdown(func() {
 		if err := server.Shutdown(ctx); err != nil {
