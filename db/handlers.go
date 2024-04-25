@@ -26,8 +26,14 @@ type Snickers2 struct {
 // }
 
 func (s *PostgresStore) GetFirms(ctx context.Context) ([]types.FirmsResult, error) {
-	db, _ := s.connect(ctx)
+	fmt.Println("connect db")
+
+	db, err1 := s.connect(ctx)
 	defer db.Close()
+
+	if err1 != nil {
+		fmt.Println("erroe to db connection", err1)
+	}
 
 	query := `
 	SELECT firm, array_agg(DISTINCT line) AS array_of_data
