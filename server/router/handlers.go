@@ -241,6 +241,7 @@ func SnickersCartResponse(cart []types.SnickersCart) []types.CartResponse {
 func (s *Server) handleGetFirms(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("invkdsjfkkjf'skd;fj;slfj;sdjfs;kjdf")
 	firms, err := s.store.GetFirms(r.Context())
+	fmt.Println("jgjgkjgkjgkhgkhgkhinvkdsjfkkjf'skd;fj;slfj;sdjfs;kjdf")
 	if err != nil {
 		return
 	}

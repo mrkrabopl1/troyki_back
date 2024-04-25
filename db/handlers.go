@@ -29,6 +29,7 @@ func (s *PostgresStore) GetFirms(ctx context.Context) ([]types.FirmsResult, erro
 	fmt.Println("connect db")
 
 	db, err1 := s.connect(ctx)
+	fmt.Println("connect(((((((((((((((((((((((())))))))))))))))))))))))")
 	defer db.Close()
 
 	if err1 != nil {
