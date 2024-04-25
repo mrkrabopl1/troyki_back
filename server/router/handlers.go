@@ -395,7 +395,7 @@ func (s *Server) handleSearchMerch(w http.ResponseWriter, r *http.Request) {
 func (s *Server) handleGetCollection(w http.ResponseWriter, r *http.Request) {
 	var postData types.PostDataCollection
 	err := json.NewDecoder(r.Body).Decode(&postData)
-	fmt.Println(postData)
+	fmt.Println(postData, "fnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
@@ -406,6 +406,7 @@ func (s *Server) handleGetCollection(w http.ResponseWriter, r *http.Request) {
 	// Print the result and the time taken
 	response := NewSnickersSearchResponse1(searchData)
 
+	fmt.Println(response, "fnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn")
 	render.JSON(w, r, response)
 }
 

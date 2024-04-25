@@ -42,9 +42,38 @@ func (s *Server) Start(ctx context.Context) {
 		// ReadTimeout:  s.cfg.ReadTimeout,
 		// WriteTimeout: s.cfg.WriteTimeout,
 	}
-	s.router.Get("/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+
+	s.router.Get("/*", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println("uytutyutyutyu")
 		http.ServeFile(w, r, "./dist/index.html")
 	}))
+	s.router.Get("/buy", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println("uytutyutyutyu")
+		http.ServeFile(w, r, "./dist/index.html")
+	}))
+	s.router.Get("/images/*", func(w http.ResponseWriter, r *http.Request) {
+		http.StripPrefix("/images/", http.FileServer(http.Dir("./images"))).ServeHTTP(w, r)
+	})
+	// s.router.Get("/collections/*", func(w http.ResponseWriter, r *http.Request) {
+	// 	http.Redirect(w, r, "/", http.StatusFound)
+	// })
+	// s.router.Get("/images/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	// 	fmt.Println("jfnl3rfnlerjnglntglkn5yhmlytnhkgmr;f'gtkhkryht;grtm;lglgm5tlgm5[lmh5[l]]")
+	// 	imageName := filepath.Base(r.URL.Path)
+	// 	fmt.Println(imageName)
+	// 	// Open the image file
+	// 	imagePath := filepath.Join("uploads", imageName)
+	// 	file, err := os.Open(imagePath)
+	// 	if err != nil {
+	// 		// Handle error (e.g., image not found)
+	// 		w.WriteHeader(http.StatusNotFound)
+	// 		return
+	// 	}
+	// 	defer file.Close()
+
+	// 	// Serve the image
+	// 	http.ServeContent(w, r, "", time.Now(), file)
+	// }))
 
 	s.router.Handle("/*", fileServer)
 
