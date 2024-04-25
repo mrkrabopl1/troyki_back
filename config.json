@@ -1,5 +1,5 @@
 {
-    "PgHost":"127.0.0.1",
+    "PgHost":"147.45.150.167",
     "PgPort":"5432",
     "PgUser":"postgres",
     "PgPass":"s8121996",
